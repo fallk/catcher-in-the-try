@@ -4,7 +4,10 @@
   "description": "Catch Javascript errors in the browser.  All of them.  With real stack traces!",
   "main": "lib/citt.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "build-debug": "browserify lib/citt.js -d --s _dontuseme_errorSteamroller > dist/steamroller.js",
+    "build-min": "browserify lib/citt.js -d --s _dontuseme_errorSteamroller | uglifyjs -c > dist/steamroller.min.js",
+    "build": "npm run build-debug && npm run build-min"
   },
   "repository": {
     "type": "git",
@@ -23,5 +26,10 @@
     "acorn": "~0.4.2",
     "estraverse": "~1.5.0",
     "escodegen": "~1.0.1"
+  },
+  "devDependencies": {
+    "browserify": "^14.1.0",
+    "uglify-js": "^2.7.5",
+    "watchify": "^3.9.0"
   }
 }
